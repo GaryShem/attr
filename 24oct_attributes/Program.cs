@@ -7,11 +7,17 @@ namespace oct_attributes
 	{
 		public static void Main (string[] args)
 		{
-			foreach (var property in (typeof(FirstClass)).GetProperties())
-			{
-				var attr = (NameAttribute)property.GetCustomAttribute(typeof(NameAttribute), false);
-				Console.WriteLine ("{0} : {1}", property.Name, attr.Description);
-			}
+		    ClassWithFields cwf = new ClassWithFields
+		    {
+		        FirstNumber = 10,
+		        SecondNumber = 10,
+		        Name = "alskdhjlaksjd",
+		        SecondName = "alskdja"
+
+		    };
+            Int32Validate.Validate(cwf);
+
+		    Console.ReadKey();
 		}
 	}
 }

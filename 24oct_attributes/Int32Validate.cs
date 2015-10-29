@@ -5,28 +5,48 @@ namespace oct_attributes
 {
 	public static class Int32Validate
 	{
-		public static bool Validate(object obj)
+		public static void Validate(object obj)
 		{
-			foreach (FieldInfo field in obj.GetType().GetFields())
-			{
-				if (field.FieldType.AssemblyQualifiedName == typeof(Int32).AssemblyQualifiedName)
-					continue;
-				Int32 n = (Int32)field.GetValue (obj);
-				var attrField = (ValidateInt32Attribute)field.GetCustomAttribute (ValidateInt32Attribute, false);
-				if ((n < attrField.MinValue || n > attrField.MaxValue) || (n == 0 && attrField.ZeroEnabled == false))
-					throw new ArgumentException("VSE OCEN PLOHO");
+		    FieldInfo[] fields = obj.GetType().GetFields();
+            foreach (var field in fields)
+            {
+                if (field.FieldType.AssemblyQualifiedName != typeof(Int32).AssemblyQualifiedName)
+                    continue;
+                //с этих пор мы знаем, что проперти - Int32
+                //проверяем, есть ли на ней аттрибут
+                ValidateInt32Attribute attrProp = (ValidateInt32Attribute)field.GetCustomAttribute(typeof(ValidateInt32Attribute), false);
+                if (attrProp == null)
+                    continue;
+                //с этих пор мы знаем, что проперти - Int32, и у неё есть наш аттрибут
+                //теперь мы сверяемся с его условиями
+                Int32 n = (Int32)field.GetValue(obj);
+                if (n < attrProp.MinValue)
+                    throw new InvalidValueException(field.Name, attrProp, n, "value < minvalue");
+                if (n > attrProp.MaxValue)
+                    throw new InvalidValueException(field.Name, attrProp, n, "value > maxvalue");
+                if (n == 0 && attrProp.ZeroEnabled == false)
+                    throw new InvalidValueException(field.Name, attrProp, n, "value == 0 when zero is disallowed");
+            }
 
-			}
-
-			foreach (var property in obj.GetType().GetProperties())
+		    PropertyInfo[] properties = obj.GetType().GetProperties();
+			foreach (var property in properties)
 			{
-				var attr = (NameAttribute)property.GetCustomAttribute(typeof(NameAttribute), false);
-				if (property.PropertyType is Int32 == false)
-					continue;
-				Int32 n = (Int32)property.GetValue (property);
-				var attrProp = (ValidateInt32Attribute)property.GetCustomAttribute (ValidateInt32Attribute, false);
-				if ((n < attrProp.MinValue || n > attrProp.MaxValue) || (n == 0 && attrProp.ZeroEnabled == false))
-					throw new ArgumentException("VSE OCEN PLOHO");
+                if (property.PropertyType.AssemblyQualifiedName != typeof(Int32).AssemblyQualifiedName)
+                    continue;
+                //с этих пор мы знаем, что проперти - Int32
+                //проверяем, есть ли на ней аттрибут
+				ValidateInt32Attribute attrProp = (ValidateInt32Attribute)property.GetCustomAttribute(typeof(ValidateInt32Attribute), false);
+			    if (attrProp == null)
+			        continue;
+                //с этих пор мы знаем, что проперти - Int32, и у неё есть наш аттрибут
+                //теперь мы сверяемся с его условиями
+                Int32 n = (Int32)property.GetValue(obj);
+                if (n < attrProp.MinValue)
+                    throw new InvalidValueException(property.Name, attrProp, n, "value < minvalue");
+                if (n > attrProp.MaxValue)
+                    throw new InvalidValueException(property.Name, attrProp, n, "value > maxvalue");
+                if (n == 0 && attrProp.ZeroEnabled == false)
+                    throw new InvalidValueException(property.Name, attrProp, n, "value == 0 when zero is disallowed");
 			}
 		}
 	}
