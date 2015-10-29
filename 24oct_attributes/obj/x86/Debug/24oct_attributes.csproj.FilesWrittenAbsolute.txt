@@ -1,5 +1,0 @@
-/home/fwiffo/Documents/programming/progs/Csharp/24oct_attributes/24oct_attributes/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/fwiffo/Documents/programming/progs/Csharp/24oct_attributes/24oct_attributes/bin/Debug/24oct_attributes.exe.mdb
-/home/fwiffo/Documents/programming/progs/Csharp/24oct_attributes/24oct_attributes/bin/Debug/24oct_attributes.exe
-/home/fwiffo/Documents/programming/progs/Csharp/24oct_attributes/24oct_attributes/obj/x86/Debug/24oct_attributes.exe
-/home/fwiffo/Documents/programming/progs/Csharp/24oct_attributes/24oct_attributes/obj/x86/Debug/24oct_attributes.exe.mdb
