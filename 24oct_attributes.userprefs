@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="24oct_attributes/Int32Validate.cs">
+    <Files>
+      <File FileName="24oct_attributes/Program.cs" Line="4" Column="4" />
+      <File FileName="24oct_attributes/ValidateInt32Attribute.cs" Line="4" Column="4" />
+      <File FileName="24oct_attributes/ClassWithFields.cs" Line="37" Column="37" />
+      <File FileName="24oct_attributes/Int32Validate.cs" Line="58" Column="58" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
